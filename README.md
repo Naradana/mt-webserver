@@ -1,7 +1,9 @@
 # mt-webserver
 Multi-threading Web Server for node.js
 
-While node.js is very successful to implement webserves to handle quite simple calls efficiently, but programming database applications with complex transactions spanning multiple tables becomes quite difficult to write. The multi-threading web server allows to program applications in the classical object-oriented/procedural style.
+While node.js is very successful to implement webservers to handle quite simple calls efficiently, programming database applications with complex transactions spanning multiple tables becomes quite difficult to write.
+
+The multi-threading web server allows to program applications in the classical object-oriented/procedural style.
 
 Problems with node:
 
@@ -9,7 +11,7 @@ Problems with node:
 -   intuitive procedural OO programming is not possible - the beauty of the easy to learn and to use JavaScript programming language is lost
 -   a single error in the main thread can halt or impair the whole application
 -   the main thread becomes easily a bootleneck for the whole system
--   the programmer must make sure that the garbage collection really can clean up or the node process RAM usage increases over time
+-   the programmer must make sure that the garbage collection really can clean up or the node's process RAM usage increases over time
 
 Solution:
 
@@ -33,6 +35,10 @@ Drawbacks:
 
 0.2 - Basic web server functionality in main thread to serve simple requests without starting a worker-thread, e.g. deliver file content and cached HTTP responses
 
-0.3 - Thread pool and intelligent routing HTTP requests to existing threads, e.g. depending on session cookie values so the same thread handles requests in a session
+0.3 - Thread pool and intelligent routing HTTP requests to existing threads, e.g. depending on session cookie values so the same thread handles requests in a session. Throwing aways worker-threads from time to time frees memory allocation that could not be cleaned up by the JavaScript garbage collector.
 
 0.4 - Shared ACID key/value store supporting transactions
+
+...
+
+1.0 Fully-fledged webserver ready for productive use
