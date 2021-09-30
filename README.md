@@ -33,12 +33,16 @@ Drawbacks:
 
 0.1 - Using node's worker_threads and messages to route HTTP requests and responses between main thread and worker threads
 
-0.2 - Basic web server functionality in main thread to serve simple requests without starting a worker-thread, e.g. deliver file content and cached HTTP responses
+0.2 - Route HTTP requests through network API. Each worker-thread binds to a separate port and HTTP requests are forwarded by the main thread to this ports, similar to tjanczuk/iisnode. Advantage: each worker-thread can implement a regular web server using the http API.
 
-0.3 - Thread pool and intelligent routing HTTP requests to existing threads, e.g. depending on session cookie values so the same thread handles requests in a session. Throwing aways worker-threads from time to time frees memory allocation that could not be cleaned up by the JavaScript garbage collector.
+0.3 - Basic web server functionality in main thread to serve simple requests without starting a worker-thread, e.g. deliver file content and cached HTTP responses
 
-0.4 - Shared ACID key/value store supporting transactions
+0.4 - Thread pool and intelligent routing HTTP requests to existing threads, e.g. depending on session cookie values so the same thread handles requests in a session. Throwing aways worker-threads from time to time frees memory allocation that could not be cleaned up by the JavaScript garbage collector.
+
+0.5 - Shared ACID key/value store supporting transactions
 
 ...
 
 1.0 Fully-fledged webserver ready for productive use
+
+(the order of the roadmap items might change, depending on the demand)
